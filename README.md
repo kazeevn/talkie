@@ -1,8 +1,8 @@
 # talkie
 
-`talkie` is an inference library for the talkie 13B language model family.
+`talkie` is an inference library for the talkie 13B language model family developed by Alec Radford, Nick Levine, and David Duvenaud.
 
-`talkie-1930-13b-base` is a 13b language model trained on pre-1931 English-language text. ]
+`talkie-1930-13b-base` is a 13b language model trained on pre-1931 English-language text.
 
 `talkie-1930-13b-it` has been instruction-tuned using a novel instruction-following dataset built from pre-1931 reference works including etiquette manuals, letter-writing manuals, encyclopedias, and poetry collections. It has also undergone reinforcement learning using online DPO to improve instruction-following capabilities. 
 
