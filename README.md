@@ -1,7 +1,7 @@
 # talkie - a 13b vintage language model from 1930
 
 <p align="center">
-  <img src="assets/identity.png" alt="talkie" />
+  <img src="assets/identity.png" alt="talkie" width="600" />
 </p>
 
 `talkie` is an inference library for the talkie 13B language model family developed by Alec Radford, Nick Levine, and David Duvenaud.
