@@ -1,4 +1,4 @@
-# talkie - a 13b vintage language model from 1930
+# talkie - a 13B vintage language model from 1930
 
 <p align="center">
   <img src="assets/identity.png" alt="talkie" width="600" />
