@@ -108,24 +108,38 @@ def _cmd_generate(args: argparse.Namespace) -> None:
 
 
 def _cmd_chat(args: argparse.Namespace) -> None:
+    from prompt_toolkit import PromptSession
+
     from talkie.chat import Message
     from talkie.generate import Talkie
 
     print(f"Loading {args.model}...", file=sys.stderr)
     model = Talkie(args.model, device=args.device, cache_dir=args.cache_dir)
-    print("Model loaded. Type your message (Ctrl-D to quit).\n", file=sys.stderr)
+    print(
+        "Model loaded. Type your message (/clear to reset, Ctrl-D to quit).\n",
+        file=sys.stderr,
+    )
 
-    messages: list[Message] = []
-    if args.system:
-        messages.append(Message(role="system", content=args.system))
+    system_message: Message | None = (
+        Message(role="system", content=args.system) if args.system else None
+    )
+    messages: list[Message] = [system_message] if system_message else []
+    session: PromptSession[str] = PromptSession()
 
     while True:
         try:
-            user_input = input("> ")
-        except (EOFError, KeyboardInterrupt):
+            user_input = session.prompt("> ")
+        except KeyboardInterrupt:
+            continue
+        except EOFError:
             print()
             break
         if not user_input.strip():
+            continue
+
+        if user_input.strip() == "/clear":
+            messages = [system_message] if system_message else []
+            print("(conversation cleared)\n", file=sys.stderr)
             continue
 
         messages.append(Message(role="user", content=user_input))
